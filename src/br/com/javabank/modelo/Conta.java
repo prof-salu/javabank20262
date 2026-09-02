@@ -1,9 +1,9 @@
 package br.com.javabank.modelo;
 
 public class Conta {
-    private int numero;
-    private String titular;
-    private double saldo;
+    public int numero;
+    public String titular;
+    public double saldo;
 
     public boolean depositar(double valor){
         if(valor > 0){
