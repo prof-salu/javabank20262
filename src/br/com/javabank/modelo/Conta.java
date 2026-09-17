@@ -6,7 +6,7 @@ public class Conta {
     //private --> apenas a propria classe tem acesso aos membros
     private int numero;
     private String titular;
-    private double saldo;
+    protected double saldo;
 
     //Construtor
     public Conta(){
