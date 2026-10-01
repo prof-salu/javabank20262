@@ -1,15 +1,16 @@
 package br.com.javabank.testes;
 
 import br.com.javabank.modelo.Conta;
+import br.com.javabank.modelo.Corrente;
 
 public class TesteConta {
     //ATALHO MAIN ==> PSVM + TAB
     public static void main(String[] args) {
         //INSTANCIAÇÃO
-        Conta c1 = new Conta(1000, "Juca");
-        Conta c2 = new Conta(1001, "Ana");
+        Conta c1 = new Corrente(1000, "Juca", 500);
+        Conta c2 = new Corrente(1001, "Ana", 300);
         Conta c3 = c1;
-        Conta c4 = new Conta(1001, "Ana");
+        Conta c4 = new Corrente(1001, "Ana", 300);
 
         //objeto c1
         c1.setTitular("Juca Pereira");

@@ -1,6 +1,7 @@
 package br.com.javabank.modelo;
 
-public class Corrente extends Conta{
+//Classes FINAL não podem ser estendidas
+public final class Corrente extends Conta{
     private double limite;
 
     public Corrente(int numero,
@@ -26,5 +27,10 @@ public class Corrente extends Conta{
         else{
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("| Limite: R$%.2f", limite);
     }
 }
