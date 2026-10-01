@@ -37,7 +37,7 @@ public class App {
             int opcao = 0;
 
             do{
-                System.out.println("Escolha uma opção: ");
+                System.out.println("\nEscolha uma opção: ");
                 System.out.println("1- Criar/Abrir conta");
                 System.out.println("2- Consultar Dados");
                 System.out.println("3- Realizar Deposito");
@@ -101,20 +101,89 @@ public class App {
                             System.out.println("Número de conta não encontrado.");
                         }
                     }
-                    case 3 -> {}
-                    case 4 -> {}
-                    case 5 -> {
+                    case 3 -> {
+                        System.out.print("Informe o numero da conta para depósito: ");
+                        int numero = Integer.parseInt(entrada.nextLine());
+                        System.out.print("Informe o valor a ser depositado: R$ ");
+                        double valor = Double.parseDouble(entrada.nextLine());
 
+                        if(c1.getNumero() == numero){
+                            c1.depositar(valor);
+                            System.out.println("Depósito realizado com sucesso na conta de " + c1.getTitular());
+                        }else if(c2 != null && c2.getNumero() == numero){
+                            c2.depositar(valor);
+                            System.out.println("Depósito realizado com sucesso na conta de " + c2.getTitular());
+                        }else{
+                            System.out.println("Número de conta não encontrado.");
+                        }
                     }
+                    case 4 -> {
+                        System.out.print("Informe o numero da conta para saque: ");
+                        int numero = Integer.parseInt(entrada.nextLine());
+                        System.out.print("Informe o valor a ser sacado: R$ ");
+                        double valor = Double.parseDouble(entrada.nextLine());
 
+                        if(c1.getNumero() == numero){
+                            c1.sacar(valor);
+                            System.out.println("Operação de saque processada na conta de " + c1.getTitular());
+                        }else if(c2 != null && c2.getNumero() == numero){
+                            c2.sacar(valor);
+                            System.out.println("Operação de saque processada na conta de " + c2.getTitular());
+                        }else{
+                            System.out.println("Número de conta não encontrado.");
+                        }
+                    }
+                    case 5 -> {
+                        System.out.print("Informe o numero da conta de ORIGEM: ");
+                        int numeroOrigem = Integer.parseInt(entrada.nextLine());
+                        System.out.print("Informe o numero da conta de DESTINO: ");
+                        int numeroDestino = Integer.parseInt(entrada.nextLine());
+
+                        System.out.print("Informe o valor da transferência: R$ ");
+                        double valor = Double.parseDouble(entrada.nextLine());
+
+                        Conta origem = null;
+                        Conta destino = null;
+
+                        // Buscar conta de origem
+                        if(c1.getNumero() == numeroOrigem){
+                            origem = c1;
+                        }
+                        else if(c2 != null && c2.getNumero() == numeroOrigem){
+                            origem = c2;
+                        }
+
+                        // Buscar conta de destino
+                        if(c1.getNumero() == numeroDestino) {
+                            destino = c1;
+                        }
+                        else if(c2 != null && c2.getNumero() == numeroDestino) {
+                            destino = c2;
+                        }
+
+                        // Se ambas as contas existirem, faz a transferência
+                        if(origem != null && destino != null){
+                            // Obs: Dependendo de como você programou a classe Conta, a assinatura do método pode mudar
+                            // Se for transferir(double valor, Conta destino) use: origem.transferir(valor, destino);
+                            // Se for transferir(Conta destino, double valor) use: origem.transferir(destino, valor);
+                            origem.transferir(valor, destino);
+                            System.out.println("Transferência realizada com sucesso!");
+                        } else {
+                            System.out.println("Erro: Conta de origem ou destino não encontrada.");
+                        }
+                    }
                     case 6 -> {
                         System.out.print("Informe o numero da conta: ");
                         int numero = Integer.parseInt(entrada.nextLine());
 
                         if(c2 instanceof Poupanca && c2.getNumero() == numero){
                             double rendimento = ((Poupanca) c2).calcularRendimento();
-                            System.out.printf("Valor do rendimento: %.2f", rendimento);
+                            System.out.printf("Valor do rendimento: %.2f\n", rendimento);
                             c2.depositar(rendimento);
+                        }else if(c1.getNumero() == numero || (c2 instanceof Corrente && c2.getNumero() == numero)){
+                            System.out.println("Operação inválida: Esta não é uma conta poupança.");
+                        }else{
+                            System.out.println("Número de conta não encontrado.");
                         }
                     }
                     case 7 -> {
