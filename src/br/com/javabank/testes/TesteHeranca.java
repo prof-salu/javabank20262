@@ -4,7 +4,7 @@ import br.com.javabank.modelo.Corrente;
 import br.com.javabank.modelo.Poupanca;
 
 public class TesteHeranca {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Corrente cc1 = new Corrente(2001, "Lucas", 500);
         Poupanca cp1 = new Poupanca(2002, "Marlene", 1);
 

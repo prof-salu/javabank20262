@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class App {
     //ATALHO ==> PSVM + TAB --> main()
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         //ATALHO ==> SOUT + TAB --> println
         System.out.println("JAVABANK - TERMINAL DO CAIXA");
         //Variaveis
@@ -124,10 +124,18 @@ public class App {
                         double valor = Double.parseDouble(entrada.nextLine());
 
                         if(c1.getNumero() == numero){
-                            c1.sacar(valor);
+                            try {
+                                c1.sacar(valor);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                             System.out.println("Operação de saque processada na conta de " + c1.getTitular());
                         }else if(c2 != null && c2.getNumero() == numero){
-                            c2.sacar(valor);
+                            try {
+                                c2.sacar(valor);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                             System.out.println("Operação de saque processada na conta de " + c2.getTitular());
                         }else{
                             System.out.println("Número de conta não encontrado.");
@@ -166,7 +174,12 @@ public class App {
                             // Obs: Dependendo de como você programou a classe Conta, a assinatura do método pode mudar
                             // Se for transferir(double valor, Conta destino) use: origem.transferir(valor, destino);
                             // Se for transferir(Conta destino, double valor) use: origem.transferir(destino, valor);
-                            origem.transferir(valor, destino);
+                            try {
+                                origem.transferir(valor, destino);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+
                             System.out.println("Transferência realizada com sucesso!");
                         } else {
                             System.out.println("Erro: Conta de origem ou destino não encontrada.");

@@ -62,13 +62,13 @@ public abstract class Conta{
             this.saldo += valor;
             return true;
         }else{
-            return false;
+            throw new RuntimeException("Valor invalido!");
         }
     }
 
-    public abstract boolean sacar(double valor);
+    public abstract boolean sacar(double valor) throws Exception;
 
-    public final boolean transferir(double valor, Conta favorecido){
+    public final boolean transferir(double valor, Conta favorecido) throws Exception{
         if(sacar(valor) == true){
             favorecido.depositar(valor);
             return true;

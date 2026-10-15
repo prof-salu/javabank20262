@@ -5,7 +5,7 @@ import br.com.javabank.modelo.Corrente;
 
 public class TesteConta {
     //ATALHO MAIN ==> PSVM + TAB
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //INSTANCIAÇÃO
         Conta c1 = new Corrente(1000, "Juca", 500);
         Conta c2 = new Corrente(1001, "Ana", 300);

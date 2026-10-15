@@ -19,14 +19,15 @@ public final class Corrente extends Conta{
 
     //Reescrita de funçoes (OVERRIDE)
     @Override //Anotação
-    public boolean sacar(double valor) {
-        if(valor > 0 && valor <= this.saldo + limite){
-            this.saldo -= valor;
+    public boolean sacar(double valor)throws Exception {
+        if(valor > this.saldo + limite){
+            throw new SaldoInsuficienteException();
+        }else if(valor <= 0){
+            throw new IllegalArgumentException("O valor do saque deve ser positivo");
+        }
+
+        this.saldo -= valor;
             return true;
-        }
-        else{
-            return false;
-        }
     }
 
     @Override
