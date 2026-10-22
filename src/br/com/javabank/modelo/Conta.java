@@ -2,7 +2,7 @@ package br.com.javabank.modelo;
 
 import java.util.Objects;
 
-public abstract class Conta{
+public abstract class Conta implements Comparable{
     //ENCAPSULAMENTO
     //public --> qualquer classe tem acesso a todos os membros
     //private --> apenas a propria classe tem acesso aos membros
@@ -93,5 +93,20 @@ public abstract class Conta{
     @Override
     public int hashCode() {
         return Objects.hash(numero, titular);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Conta outro = (Conta) o;
+
+        if(this.numero > outro.getNumero()){
+            return 1;
+        }
+
+        if(this.numero < outro.getNumero()){
+            return -1;
+        }
+
+        return 0;
     }
 }
