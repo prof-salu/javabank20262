@@ -57,7 +57,7 @@ public abstract class Conta implements Comparable{
         }
     }
 
-    public boolean depositar(double valor){
+    public synchronized boolean depositar(double valor){
         if(valor > 0){
             this.saldo += valor;
             return true;
